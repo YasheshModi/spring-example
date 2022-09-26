@@ -1,5 +1,6 @@
 package com.yashesh.controller;
 
+import com.yashesh.entity.Student;
 import com.yashesh.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +17,6 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    /*public StudentController(StudentService studentService) {
-            super();
-            this.studentService = studentService;
-        }*/
     @GetMapping("/students")
     public String liststudents(Model model)
     {
