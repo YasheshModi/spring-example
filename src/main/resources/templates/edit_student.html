@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create or Add Student</title>
+    <title>Edit Student</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -30,12 +30,13 @@
 </nav>
 <br>
 <br>
+
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Create New Student </h1>
+            <h1 class = "text-center"> Update Student </h1>
             <div class = "card-body">
-                <form th:action="@{/students}" th:object = "${student}" method="POST">
+                <form th:action="@{/students/{id} (id=${student.id})}" th:object = "${student}" method="POST">
                     <div class ="form-group">
                         <label> Student First Name </label>
                         <input
