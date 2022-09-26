@@ -68,9 +68,15 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    @PostMapping("/students/searchbyname")
-    public String searchByName(String first_name,String last_name){
-        studentRepository.findByFirstNameOrLastName();
+    @PostMapping("/students/{first_name}")
+    public String searchStudentByName(String first_name){
+        studentRepository.findByFirstNameOrLastName(first_name);
+        return "students";
+    }
+
+    @PostMapping("/students/{email}")
+    public String searchStudentByEmail(String email) {
+        studentRepository.findByEmail(email);
         return "students";
     }
 }

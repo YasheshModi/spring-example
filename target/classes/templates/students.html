@@ -36,9 +36,9 @@
     </div>
 
     <input type="text" name="name" value="search by name">
-    <a th:href = "@{/students/searchbyname}" class = "btn btn-primary btn-sm mb-3"> search</a>
+    <a th:href = "@{/students/{first_name}}" class = "btn btn-primary btn-sm mb-3"> search</a>
     <input type="text" name="email" value="search by email">
-    <a th:href = "@{/students/searchbyemail}" class = "btn btn-primary btn-sm mb-3"> search</a>
+    <a th:href = "@{/students/{email}}" class = "btn btn-primary btn-sm mb-3"> search</a>
 
     <div class = "row">
         <div class = "col-lg-3">
