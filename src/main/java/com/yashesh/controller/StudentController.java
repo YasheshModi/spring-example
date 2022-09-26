@@ -1,3 +1,13 @@
+package com.yashesh.controller;
+
+import com.yashesh.service.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
 public class StudentController {
     private StudentService studentService;
 
@@ -5,6 +15,11 @@ public class StudentController {
         super();
         this.studentService = studentService;
     }
+
+    /*public StudentController(StudentService studentService) {
+            super();
+            this.studentService = studentService;
+        }*/
     @GetMapping("/students")
     public String liststudents(Model model)
     {
