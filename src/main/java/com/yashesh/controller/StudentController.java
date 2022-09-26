@@ -1,6 +1,7 @@
 package com.yashesh.controller;
 
 import com.yashesh.entity.Student;
+import com.yashesh.repository.StudentRepository;
 import com.yashesh.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class StudentController {
     private StudentService studentService;
+    private StudentRepository studentRepository;
 
     public StudentController(StudentService studentService) {
         super();
@@ -64,5 +66,11 @@ public class StudentController {
     public String deleteStudent(@PathVariable Long id) {
         studentService.deleteStudentById(id);
         return "redirect:/students";
+    }
+
+    @PostMapping("/students/searchbyname")
+    public String searchByName(String first_name,String last_name){
+        studentRepository.findByFirstNameOrLastName();
+        return "students";
     }
 }
