@@ -35,13 +35,12 @@
         <h1> List Students </h1>
     </div>
 
-    <form th:action="@{/searchfname}" method="post">
+    <form th:action="@{/searchfname}" method="post" style="float:left">
         <input type="text" name="firstName"  placeholder="Find by First Name" size="30" >
         <button type="submit" class="btn btn-info" >Search</button>
-        <!--<button type="submit" class="btn btn-info" >Reset</button>-->
     </form>
 
-    <form th:action="@{/searchlname}" method="post">
+    <form th:action="@{/searchlname}" method="post" style="float:right">
         <input type="text" name="lastName" placeholder="Find by Last Name" size="30">
         <button type="submit" class="btn btn-info">Search</button>
     </form>
@@ -50,7 +49,7 @@
         <input type="text" name="email" placeholder="Find by Email" size="30">
         <button type="submit" class="btn btn-info">Search</button>
     </form>
-
+    <!--<button type="submit" class="btn btn-info" >Reset</button>-->
     <div class = "row">
         <div class = "col-lg-3">
             <a th:href = "@{/students/new}" class = "btn btn-primary btn-sm mb-3"> Add Student</a>
