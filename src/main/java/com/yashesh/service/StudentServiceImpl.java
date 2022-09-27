@@ -1,8 +1,8 @@
 package com.yashesh.service;
 
+import com.yashesh.entity.Student;
 import com.yashesh.repository.StudentRepository;
 import org.springframework.stereotype.Service;
-import com.yashesh.entity.*;
 
 import java.util.List;
 
@@ -36,7 +36,25 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student getStudentByFirstNameOrLastName(String first_name) {
-        return studentRepository.findByFirstNameOrLastName(first_name);
+    public List<Student> getByFirstName(String firstName){
+        List<Student> byFirstName = studentRepository.findByFirstName(firstName);
+        return byFirstName;
     }
+
+    @Override
+    public List<Student> getByLastName(String lastName){
+        List<Student> byLastName = studentRepository.findByLastName(lastName);
+        return  byLastName;
+    }
+
+    @Override
+    public List<Student> getByEmail(String email) {
+        List<Student> byEmail = studentRepository.findByEmail(email);
+        return byEmail;
+    }
+
+     /*  @Override
+    public Student getStudentByFirstNameOrLastName(String first_name,String last_name) {
+        return studentRepository.findByFirstNameOrLastName(first_name,last_name);
+    }*/
 }

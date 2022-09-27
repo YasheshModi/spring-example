@@ -5,10 +5,9 @@ import com.yashesh.repository.StudentRepository;
 import com.yashesh.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class StudentController {
@@ -68,15 +67,46 @@ public class StudentController {
         return "redirect:/students";
     }
 
-    @PostMapping("/students/{first_name}")
-    public String searchStudentByName(String first_name){
-        studentRepository.findByFirstNameOrLastName(first_name);
+    @PostMapping("/searchfname")
+    public String searchByFirstName(Model model,@RequestParam("firstName") String firstName) {
+        if(firstName!=null) {
+            List<Student> list = studentService.getByFirstName(firstName);
+            model.addAttribute("students", list);
+        }
+        else {
+            List<Student> list = studentService.getAllStudents();
+            model.addAttribute("students", list);
+        }
         return "students";
     }
 
-    @PostMapping("/students/{email}")
-    public String searchStudentByEmail(String email) {
-        studentRepository.findByEmail(email);
+    @PostMapping("/searchlname")
+    public String searchByLastName(Model model, @RequestParam("lastName") String lastName){
+        if(lastName!=null) {
+            List<Student> list = studentService.getByLastName(lastName);
+            model.addAttribute("students",list);
+        }
         return "students";
     }
+
+    @PostMapping("/searchemail")
+    public String searchByEmail(Model model,String email) {
+        if(email!=null) {
+            List<Student> list = studentService.getByEmail(email);
+            model.addAttribute("students",list);
+        }
+        return "students";
+    }
+
+    /* @GetMapping("/students/{first_name}/{last_name}")
+    public String searchStudentByName(@PathVariable String first_name,@PathVariable String last_name){
+        studentRepository.findByFirstNameOrLastName(first_name,last_name);
+        return "students";
+    }
+
+    @GetMapping("/students/{email}")
+    public String searchStudentByEmail(@PathVariable String email) {
+        studentRepository.findByEmail(email);
+        return "students";
+    }*/
 }
