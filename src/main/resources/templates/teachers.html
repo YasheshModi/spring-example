@@ -57,7 +57,7 @@
             <td th:text = "${teacher.age}"></td>
             <td th:text = "${teacher.gender}"></td>
             <td th:text = "${teacher.address}"></td>
-            <td th:text = "${teacher.country}"></td>
+            <td th:text = "${teacher.country.country}"></td>
             <td>
                 <a th:href="@{/teachers/edit/{id} (id=${teacher.id})}" class="btn btn-primary">Update</a>
                 <a th:href = "@{/teachers/{id}(id=${teacher.id})}" class="btn btn-danger">Delete</a>
