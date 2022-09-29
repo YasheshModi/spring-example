@@ -1,5 +1,6 @@
 package com.yashesh.repository;
 
+import com.yashesh.entity.Country;
 import com.yashesh.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -18,6 +19,7 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     List<Student> findByLastName(String lastName);
     List<Student> findByEmail(String email);
 
+    List<Student> findByCountry(Country country);
 }
 
 

@@ -18,15 +18,24 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "school_id", referencedColumnName = "id")
+    private School school;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id", referencedColumnName = "id")
+    private Country country;
+
     public Student() {
 
     }
 
-    public Student(String firstName, String lastName, String email) {
-        super();
+    public Student(String firstName, String lastName, String email, School school, Country country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.school = school;
+        this.country = country;
     }
 
     public Long getId() {
@@ -59,5 +68,21 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

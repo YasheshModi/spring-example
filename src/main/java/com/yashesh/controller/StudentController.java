@@ -1,5 +1,6 @@
 package com.yashesh.controller;
 
+import com.yashesh.entity.Country;
 import com.yashesh.entity.Student;
 import com.yashesh.repository.StudentRepository;
 import com.yashesh.service.*;
@@ -13,16 +14,21 @@ import java.util.List;
 public class StudentController {
     private StudentService studentService;
     private StudentRepository studentRepository;
+    private CountryService countryService;
+    private SchoolService schoolService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService,CountryService countryService,SchoolService schoolService) {
         super();
         this.studentService = studentService;
+        this.countryService = countryService;
+        this.schoolService = schoolService;
     }
 
     @GetMapping("/students")
     public String liststudents(Model model)
     {
         model.addAttribute("students",studentService.getAllStudents());
+        model.addAttribute("country",countryService.getAllCountry());
         return "students";
     }
 
@@ -31,6 +37,8 @@ public class StudentController {
         // create student object to hold student form data
         Student student = new Student();
         model.addAttribute("student", student);
+        model.addAttribute("country",countryService.getAllCountry());
+        model.addAttribute("school", schoolService.getAllSchool());
         return "create_student";
     }
 
@@ -43,6 +51,8 @@ public class StudentController {
     @GetMapping("/students/edit/{id}")
     public String editStudentForm(@PathVariable Long id, Model model) {
         model.addAttribute("student", studentService.getStudentById(id));
+        model.addAttribute("country", countryService.getAllCountry());
+        model.addAttribute("school", schoolService.getAllSchool());
         return "edit_student";
     }
 
@@ -55,7 +65,8 @@ public class StudentController {
         existingStudent.setFirstName(student.getFirstName());
         existingStudent.setLastName(student.getLastName());
         existingStudent.setEmail(student.getEmail());
-
+        existingStudent.setSchool(student.getSchool());
+        existingStudent.setCountry(student.getCountry());
         // save updated student object
         studentService.updateStudent(existingStudent);
         return "redirect:/students";
@@ -98,6 +109,14 @@ public class StudentController {
         return "students";
     }
 
+    @PostMapping("/searchcountry")
+    public String searchByCountry(Model model, Country country){
+        if(country!=null) {
+            List<Student> list = studentService.getByCountry(country);
+            model.addAttribute("students",list);
+        }
+        return "students";
+    }
     /* @GetMapping("/students/{first_name}/{last_name}")
     public String searchStudentByName(@PathVariable String first_name,@PathVariable String last_name){
         studentRepository.findByFirstNameOrLastName(first_name,last_name);

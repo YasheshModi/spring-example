@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/students}">Students' List</a>
+                <a class="nav-link" th:href="@{/students}">Students List</a>
             </li>
         </ul>
     </div>
@@ -68,6 +68,30 @@
                                 class = "form-control"
                                 placeholder="Enter Student Email"
                         />
+                    </div>
+
+                    <div class ="col-md-6 form-group">
+                        <label> School </label>
+                        <select class="form-control form-control-sm" th:field="*{school}" id="name">
+                            <option th:each="sc: ${school}"
+                                    th:value="${sc.id}"
+                                    th:text="${sc.name}"
+                                    th:field="*{school}"
+                            >
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class ="col-md-6 form-group">
+                        <label> Country </label>
+                        <select class="form-control form-control-sm" th:field="*{country}" id="country">
+                            <option th:each="cn: ${country}"
+                                    th:value="${cn.id}"
+                                    th:text="${cn.country}"
+                                    th:field="*{country}"
+                            >
+                            </option>
+                        </select>
                     </div>
 
                     <div class = "box-footer">

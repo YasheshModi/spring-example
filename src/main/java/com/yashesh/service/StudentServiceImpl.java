@@ -1,5 +1,6 @@
 package com.yashesh.service;
 
+import com.yashesh.entity.Country;
 import com.yashesh.entity.Student;
 import com.yashesh.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,12 @@ public class StudentServiceImpl implements StudentService{
     public List<Student> getByEmail(String email) {
         List<Student> byEmail = studentRepository.findByEmail(email);
         return byEmail;
+    }
+
+    @Override
+    public List<Student> getByCountry(Country country) {
+        List<Student> byCountry = studentRepository.findByCountry(country);
+        return byCountry;
     }
 
      /*  @Override
