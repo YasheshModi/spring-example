@@ -1,5 +1,6 @@
 package com.yashesh.controller;
 
+import com.yashesh.entity.Country;
 import com.yashesh.entity.Student;
 import com.yashesh.entity.Teacher;
 import com.yashesh.repository.TeacherRepository;
@@ -35,10 +36,11 @@ public class TeacherController {
     }
 
     @GetMapping("/teachers/new")
-    public String createStudentForm(Model model) {
+    public String createTeacherForm(Model model) {
         Teacher teacher = new Teacher();
         model.addAttribute("teacher",teacher);
         model.addAttribute("country",countryService.getAllCountry());
+//        Country countryresponse = countryService.findByCountryId(id);
         return "create_teacher";
     }
 
@@ -75,14 +77,6 @@ public class TeacherController {
         return "redirect:/teachers";
    }
 
-    /*@ModelAttribute("countryList")
-    public Map<String, String> getCountryList() {
-        Map<String, String> countryList = new HashMap<String, String>();
-        countryList.put("IN", "India");
-        countryList.put("US", "United States");
-        countryList.put("CH", "China");
-        countryList.put("SG", "Singapore");
-        return countryList;
-    }*/
+
 
 }

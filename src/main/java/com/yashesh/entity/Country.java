@@ -3,16 +3,19 @@ package com.yashesh.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "countrylist")
+@Table(name = "countries")
 public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cid")
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "country")
     private String country;
+
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "country", cascade = CascadeType.ALL)
+//    private List<Teacher> teacherList = new ArrayList<>();
 
     public Country() {
 
@@ -26,7 +29,7 @@ public class Country {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,5 +40,6 @@ public class Country {
     public void setCountry(String country) {
         this.country = country;
     }
+
 
 }

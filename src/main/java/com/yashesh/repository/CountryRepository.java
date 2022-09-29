@@ -3,6 +3,5 @@ package com.yashesh.repository;
 import com.yashesh.entity.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CountryRepository extends JpaRepository<Country,Long> {
-
+public interface CountryRepository extends JpaRepository<Country, Long> {
 }

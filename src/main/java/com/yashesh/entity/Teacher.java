@@ -1,5 +1,7 @@
 package com.yashesh.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,14 +24,16 @@ public class Teacher {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "country")
-    private String country;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id", referencedColumnName = "id")
+//    @JsonIgnoreProperties("teacherList")
+    private Country country;
 
     public Teacher() {
 
     }
 
-    public Teacher(String name, Long age, String gender, String address, String country) {
+    public Teacher(String name, Long age, String gender, String address, Country country) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -77,11 +81,11 @@ public class Teacher {
         this.address = address;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 }

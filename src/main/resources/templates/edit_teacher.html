@@ -69,7 +69,7 @@
                         <label> Teacher Country </label>
                             <select class="form-control form-control-sm" th:field="*{country}" id="country">
                                 <option th:each="cn: ${country}"
-                                        th:value="${cn.country}"
+                                        th:value="${cn.id}"
                                         th:text="${cn.country}"
                                         th:field="*{country}"
                                 >
