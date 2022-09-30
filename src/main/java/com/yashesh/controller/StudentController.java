@@ -110,9 +110,9 @@ public class StudentController {
     }
 
     @PostMapping("/searchcountry")
-    public String searchByCountry(Model model, Country country){
-        if(country!=null) {
-            List<Student> list = studentService.getByCountry(country);
+    public String searchByCountry(Model model, @RequestParam("country") Long countryId){
+        if(countryId!=null) {
+            List<Student> list = studentService.getByCountryId(countryId);
             model.addAttribute("students",list);
         }
         return "students";

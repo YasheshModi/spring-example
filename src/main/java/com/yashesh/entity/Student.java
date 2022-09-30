@@ -22,7 +22,7 @@ public class Student {
     @JoinColumn(name = "school_id", referencedColumnName = "id")
     private School school;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
 

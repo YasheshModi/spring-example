@@ -19,7 +19,7 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     List<Student> findByLastName(String lastName);
     List<Student> findByEmail(String email);
 
-    List<Student> findByCountry(Country country);
+    List<Student> findByCountryId(Long countryId);
 }
 
 

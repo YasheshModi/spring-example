@@ -55,8 +55,8 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public List<Student> getByCountry(Country country) {
-        List<Student> byCountry = studentRepository.findByCountry(country);
+    public List<Student> getByCountryId(Long countryId) {
+        List<Student> byCountry = studentRepository.findByCountryId(countryId);
         return byCountry;
     }
 
