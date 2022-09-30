@@ -16,4 +16,5 @@ public interface StudentService {
    List<Student> getByLastName(String lastName);
    List<Student> getByEmail(String email);
    List<Student> getByCountryId(Long countryId);
+   List<Student> getBySchoolId(Long schoolId);
 }

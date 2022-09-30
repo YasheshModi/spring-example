@@ -60,6 +60,11 @@ public class StudentServiceImpl implements StudentService{
         return byCountry;
     }
 
+    @Override
+    public List<Student> getBySchoolId(Long schoolId) {
+        List<Student> bySchool = studentRepository.findBySchoolId(schoolId);
+        return bySchool;
+    }
      /*  @Override
     public Student getStudentByFirstNameOrLastName(String first_name,String last_name) {
         return studentRepository.findByFirstNameOrLastName(first_name,last_name);

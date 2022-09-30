@@ -117,6 +117,15 @@ public class StudentController {
         }
         return "students";
     }
+
+    @PostMapping("/searchschool")
+    public String searchBySchool(Model model, @RequestParam("school") Long schoolId) {
+        if(schoolId!=null) {
+            List<Student> list = studentService.getBySchoolId(schoolId);
+            model.addAttribute("students",list);
+        }
+        return "students";
+    }
     /* @GetMapping("/students/{first_name}/{last_name}")
     public String searchStudentByName(@PathVariable String first_name,@PathVariable String last_name){
         studentRepository.findByFirstNameOrLastName(first_name,last_name);

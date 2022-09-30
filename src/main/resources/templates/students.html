@@ -51,27 +51,20 @@
         <button type="submit" class="btn btn-info">Search</button>
     </form>
 
-    <form th:action="@{/searchcountry}" method="post">
-        <input type="text" name="country" placeholder="Find by Country ID" size="20">
+    <form th:action="@{/searchcountry}" method="post" style="float:center">
+        <input type="number" name="country" placeholder="Find by Country ID" size="20">
         <button type="submit" class="btn btn-info btn-sm">Search</button>
     </form>
 
-<!--    <div class="col-md-6 form-group">
-        <label> Country </label>
-            <select class="form-control form-control-sm" th:field="*{country}" id="country">
-                <option value="">Choose...</option>
-                <option th:each="cn: ${country}"
-                        th:value="${cn.id}"
-                        th:text="${cn.country}"
-                >
-                </option>
-            </select>
-    </div>-->
+    <form th:action="@{/searchschool}" method="post" style="float:left">
+        <input type="number" name="school" placeholder="Find by School ID" size="20">
+        <button type="submit" class="btn btn-info btn-sm">Search</button>
+    </form>
     </div>
 
     <div class = "row">
         <div class = "col-lg-3">
-            <a th:href = "@{/students/new}" class = "btn btn-primary btn-sm mb-3"> Add Student</a>
+            <a th:href = "@{/students/new}" class = "btn btn-primary btn-sm mb-3" style="float:center"> Add Student</a>
 
         </div>
     </div>
