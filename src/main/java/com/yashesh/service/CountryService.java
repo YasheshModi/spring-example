@@ -9,4 +9,8 @@ public interface CountryService {
     List<Country> getAllCountry();
     
 //    public Country findByCountryId(int id);
+
+    Country saveCountry(Country country);
+
+    Country getById(long id);
 }

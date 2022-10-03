@@ -20,4 +20,14 @@ public class CountryServiceImpl implements CountryService{
     public List<Country> getAllCountry() {
         return countryRepository.findAll();
     }
+
+    @Override
+    public Country saveCountry(Country country) {
+        return countryRepository.save(country);
+    }
+
+    @Override
+    public Country getById(long id) {
+        return countryRepository.findById(id).get();
+    }
 }

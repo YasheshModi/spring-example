@@ -26,6 +26,15 @@ public class Student {
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
 
+    @Transient
+    private Integer marks1;
+    @Transient
+    private Integer marks2;
+    @Transient
+    private Integer marks3;
+    @Transient
+    private Integer totalMarks;
+
     public Student() {
 
     }
@@ -84,5 +93,37 @@ public class Student {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public Integer getMarks1() {
+        return marks1;
+    }
+
+    public void setMarks1(Integer marks1) {
+        this.marks1 = marks1;
+    }
+
+    public Integer getMarks2() {
+        return marks2;
+    }
+
+    public void setMarks2(Integer marks2) {
+        this.marks2 = marks2;
+    }
+
+    public Integer getMarks3() {
+        return marks3;
+    }
+
+    public void setMarks3(Integer marks3) {
+        this.marks3 = marks3;
+    }
+
+    public Integer getTotalMarks() {
+        return totalMarks;
+    }
+
+    public void setTotalMarks(Integer totalMarks) {
+        this.totalMarks = totalMarks;
     }
 }
