@@ -60,15 +60,9 @@ public class StudentController {
     public String updateStudent(@PathVariable Long id,@ModelAttribute("student") Student student,Model model) {
 
         // get student from database by id
-        Student existingStudent = studentService.getStudentById(id);
-        existingStudent.setId(id);
-        existingStudent.setFirstName(student.getFirstName());
-        existingStudent.setLastName(student.getLastName());
-        existingStudent.setEmail(student.getEmail());
-        existingStudent.setSchool(student.getSchool());
-        existingStudent.setCountry(student.getCountry());
+
         // save updated student object
-        studentService.updateStudent(existingStudent);
+        studentService.updateStudent(id,student);
         return "redirect:/students";
     }
 

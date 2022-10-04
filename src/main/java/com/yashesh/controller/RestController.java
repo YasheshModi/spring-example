@@ -93,16 +93,8 @@ public class RestController {
 
     @PostMapping("/api/students/{id}")
     public Student updateStudents(@PathVariable Long id,@RequestBody Student student) {
-        Student existingStudent = studentService.getStudentById(id);
-        existingStudent.setId(id);
-        existingStudent.setFirstName(student.getFirstName());
-        existingStudent.setLastName(student.getLastName());
-        existingStudent.setEmail(student.getEmail());
-        School school = schoolService.getSchoolById(student.getSchool().getId());
-        existingStudent.setSchool(school);
-        Country country = countryService.getById(student.getCountry().getId());
-        existingStudent.setCountry(country);
-        Student update = studentService.updateStudent(existingStudent);
+
+        Student update = studentService.updateStudent(id,student);
         return update;
 
     }

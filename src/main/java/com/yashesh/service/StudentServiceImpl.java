@@ -30,6 +30,18 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student saveStudent(Student student) {
 
+        if (student == null) {
+            return null;
+        }
+
+        if (student.getFirstName() == null) {
+            throw new RuntimeException("Firstname missing.");
+        }
+
+        if (student.getLastName() == null) {
+            throw new RuntimeException("Lastname missing.");
+        }
+
         Student st = new Student();
         st.setId(student.getId());
         st.setFirstName(student.getFirstName());
@@ -59,8 +71,38 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student updateStudent(Student student) {
-        return studentRepository.save(student);
+    public Student updateStudent(Long id,Student student) {
+
+/*        if(student == null) {
+            return null;
+        }*/
+        if(student.getFirstName() == null) {
+            throw new RuntimeException("First name missing.");
+        }
+        if(student.getLastName() == null) {
+            throw new RuntimeException("Last name missing.");
+        }
+        if(student.getEmail() == null) {
+            throw new RuntimeException("Email missing.");
+        }
+        if(student.getSchool() == null) {
+            throw new RuntimeException("School missing.");
+        }
+        if(student.getCountry() == null) {
+            throw new RuntimeException("Country missing.");
+        }
+
+        Student existingStudent = getStudentById(id);
+        existingStudent.setId(id);
+        existingStudent.setFirstName(student.getFirstName());
+        existingStudent.setLastName(student.getLastName());
+        existingStudent.setEmail(student.getEmail());
+        School school = schoolService.getSchoolById(student.getSchool().getId());
+        existingStudent.setSchool(school);
+        Country country = countryService.getById(student.getCountry().getId());
+        existingStudent.setCountry(country);
+        Student update = studentRepository.save(existingStudent);
+        return update;
     }
 
     @Override

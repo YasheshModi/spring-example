@@ -14,6 +14,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Optional;
+
 @RunWith(MockitoJUnitRunner.class)
 public class StudentServiceImplTest {
 
@@ -29,6 +31,9 @@ public class StudentServiceImplTest {
     @Mock
     CountryService countryService;
 
+    @Mock
+    StudentService service;
+
     @Before
     public void setUp() throws Exception {
         // Initialize mocks created above
@@ -37,7 +42,22 @@ public class StudentServiceImplTest {
     }
 
     @Test
-    public void testSaveStudent() {
+    public void testSaveStudent_when_student_null_then_return_null() {
+
+        Student save = studentService.saveStudent(null);
+
+        Assertions.assertTrue(save == null);
+
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testSaveStudent_when_student_fNameNull_then_return_Exception() {
+
+        Student save = studentService.saveStudent(new Student());
+
+    }
+    @Test
+    public void testSaveStudent_then_return_student() {
 
         Student student = new Student();
         School school=new School();
@@ -64,4 +84,88 @@ public class StudentServiceImplTest {
 
     }
 
+
+    @Test
+    public void testUpdateStudent_when_student_null_then_return_null(){
+        Student update = studentService.updateStudent(16L,null);
+        Assertions.assertTrue(update == null);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testUpdateStudent_when_student_fNameNull_then_return_exception(){
+        Student student = new Student();
+        student.setFirstName(null);
+        Student update = studentService.updateStudent(16L,student);
+
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testUpdateStudent_when_student_lNameNull_then_return_exception(){
+        Student student = new Student();
+        student.setFirstName("Aman");
+        student.setLastName(null);
+        Student update = studentService.updateStudent(16L,student);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testUpdateStudent_when_student_emailNull_then_return() {
+        Student student = new Student();
+        student.setFirstName("Aman");
+        student.setLastName("Raj");
+        student.setEmail(null);
+        Student update = studentService.updateStudent(16L,student);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testUpdateStudent_when_student_schoolNull_then_return_exception() {
+        Student student = new Student();
+        student.setFirstName("Aman");
+        student.setLastName("Raj");
+        student.setEmail("aman@gmail.com");
+        student.setSchool(null);
+        Student update = studentService.updateStudent(16L,student);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testUpdateStudent_when_student_countryNull_then_return_exception() {
+        Student student = new Student();
+        student.setFirstName("Aman");
+        student.setLastName("Raj");
+        student.setEmail("aman@gmail.com");
+        School school = new School();
+        school.setId(1);
+        student.setSchool(school);
+        student.setCountry(null);
+        Student update = studentService.updateStudent(16L,student);
+    }
+
+    @Test
+    public void testUpdateStudent_then_return_student() {
+        Student student = new Student();
+        School school=new School();
+        school.setId(1);
+        Country country = new Country();
+        country.setId(2L);
+
+        student.setId(16L);
+        student.setFirstName("Karan");
+        student.setLastName("Mistry");
+        student.setEmail("raj@gmail.com");
+        student.setSchool(school);
+        student.setCountry(country);
+
+        Mockito.when(studentRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(student));
+        Mockito.when(studentRepository.save(Mockito.any())).thenReturn(student);
+        Mockito.when(schoolService.getSchoolById(Mockito.any())).thenReturn(school);
+        Mockito.when(countryService.getById(Mockito.anyLong())).thenReturn(country);
+        Student update=studentService.updateStudent(16L,student);
+
+        Assertions.assertEquals(16,update.getId());
+        Assertions.assertEquals("Raj",update.getFirstName());
+        Assertions.assertEquals("Mistry",update.getLastName());
+        Assertions.assertEquals("raj@gmail.com",update.getEmail());
+        Assertions.assertEquals(1,update.getSchool().getId());
+        Assertions.assertEquals(2L,update.getCountry().getId());
+
+    }
 }
