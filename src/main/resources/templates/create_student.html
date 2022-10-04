@@ -69,6 +69,30 @@
                         />
                     </div>
 
+                    <div class ="col-md-6 form-group">
+                        <label> School </label>
+                        <select class="form-control form-control-sm" th:field="*{school}" id="name">
+                            <option value="">Choose...</option>
+                            <option th:each="sc: ${school}"
+                                    th:value="${sc.id}"
+                                    th:text="${sc.name}"
+                            >
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label> Country </label>
+                        <select class="form-control form-control-sm" th:field="*{country}" id="country">
+                            <option value="">Choose...</option>
+                            <option th:each="cn: ${country}"
+                                    th:value="${cn.id}"
+                                    th:text="${cn.country}"
+                            >
+                            </option>
+                        </select>
+                    </div>
+
                     <div class = "box-footer">
                         <button type="submit" class = "btn btn-primary">
                             Submit

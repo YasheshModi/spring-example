@@ -35,25 +35,36 @@
         <h1> List Students </h1>
     </div>
 
-
+    <div>
     <form th:action="@{/searchfname}" method="post" style="float:left">
         <input type="text" name="firstName"  placeholder="Find by First Name" size="30" >
         <button type="submit" class="btn btn-info" >Search</button>
     </form>
 
-    <form th:action="@{/searchlname}" method="post" style="float:right">
+    <form th:action="@{/searchlname}" method="post" style="float:center">
         <input type="text" name="lastName" placeholder="Find by Last Name" size="30">
         <button type="submit" class="btn btn-info">Search</button>
     </form>
 
-    <form th:action="@{/searchemail}" method="post">
+    <form th:action="@{/searchemail}" method="post" style="float:right">
         <input type="text" name="email" placeholder="Find by Email" size="30">
         <button type="submit" class="btn btn-info">Search</button>
     </form>
-    <!--<button type="submit" class="btn btn-info" >Reset</button>-->
+
+    <form th:action="@{/searchcountry}" method="post" style="float:center">
+        <input type="number" name="country" placeholder="Find by Country ID" size="20">
+        <button type="submit" class="btn btn-info btn-sm">Search</button>
+    </form>
+
+    <form th:action="@{/searchschool}" method="post" style="float:left">
+        <input type="number" name="school" placeholder="Find by School ID" size="20">
+        <button type="submit" class="btn btn-info btn-sm">Search</button>
+    </form>
+    </div>
+
     <div class = "row">
         <div class = "col-lg-3">
-            <a th:href = "@{/students/new}" class = "btn btn-primary btn-sm mb-3"> Add Student</a>
+            <a th:href = "@{/students/new}" class = "btn btn-primary btn-sm mb-3" style="float:center"> Add Student</a>
 
         </div>
     </div>
@@ -63,6 +74,8 @@
             <th> Student First Name </th>
             <th> Student Last Name</th>
             <th> Student Email </th>
+            <th> School </th>
+            <th> Country </th>
             <th> Actions </th>
         </tr>
         </thead>
@@ -72,13 +85,14 @@
             <td th:text = "${student.firstName}"></td>
             <td th:text = "${student.lastName}"></td>
             <td th:text = "${student.email}"></td>
+            <td th:text = "${student.school.name}"></td>
+            <td th:text = "${student.country.country}"></td>
             <td>
                 <a th:href = "@{/students/edit/{id}(id=${student.id})}"
                    class = "btn btn-primary">Update</a>
 
                 <a th:href = "@{/students/{id}(id=${student.id})}"
                    class = "btn btn-danger">Delete</a>
-
             </td>
         </tr>
         </tbody>

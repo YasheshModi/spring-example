@@ -18,15 +18,33 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "school_id", referencedColumnName = "id")
+    private School school;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_id", referencedColumnName = "id")
+    private Country country;
+
+    @Transient
+    private Integer marks1;
+    @Transient
+    private Integer marks2;
+    @Transient
+    private Integer marks3;
+    @Transient
+    private Integer totalMarks;
+
     public Student() {
 
     }
 
-    public Student(String firstName, String lastName, String email) {
-        super();
+    public Student(String firstName, String lastName, String email, School school, Country country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.school = school;
+        this.country = country;
     }
 
     public Long getId() {
@@ -59,5 +77,53 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public Integer getMarks1() {
+        return marks1;
+    }
+
+    public void setMarks1(Integer marks1) {
+        this.marks1 = marks1;
+    }
+
+    public Integer getMarks2() {
+        return marks2;
+    }
+
+    public void setMarks2(Integer marks2) {
+        this.marks2 = marks2;
+    }
+
+    public Integer getMarks3() {
+        return marks3;
+    }
+
+    public void setMarks3(Integer marks3) {
+        this.marks3 = marks3;
+    }
+
+    public Integer getTotalMarks() {
+        return totalMarks;
+    }
+
+    public void setTotalMarks(Integer totalMarks) {
+        this.totalMarks = totalMarks;
     }
 }
